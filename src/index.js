@@ -1,13 +1,21 @@
 const express = require('express');
-const bodyParse = require('body-parser');
-
 const app = express();
+const Joi = require('joi');
 
-app.use(bodyParse.json());
-app.use(bodyParse.urlencoded({ extended: false}));
+app.use(express.json());
 
-app.get('/',(req,res)=>{
-    res.send('ok')
-});
+const port = process.env.PORT || 3000;
 
-app.listen(3000)
+
+app.get('/api/courses',(req,res)=>{
+    res.send(courses)
+})
+
+const courses = [
+    {id: 1, name: 'course1'},
+    {id: 2, name: 'course2'},
+    {id: 3, name: 'course3'},
+    {id: 4, name: 'course4'},
+]
+
+app.listen(port, ()=> console.log(`Listenning on port ${port}`));
